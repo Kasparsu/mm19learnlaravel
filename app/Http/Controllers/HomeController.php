@@ -13,7 +13,8 @@ class HomeController extends Controller
     }
 
     public function articles(){
-        $articles = Article::all();
+        $articles = Article::paginate(16);
+
         return view('articles', compact('articles'));
     }
 }
