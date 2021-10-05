@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use \App\Http\Controllers\HomeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [\App\Http\Controllers\HomeController::class, 'index']);
-Route::get('/articles', [\App\Http\Controllers\HomeController::class, 'articles']);
+Route::get('/', [HomeController::class, 'index']);
+Route::get('/articles', [HomeController::class, 'articles']);
+Route::get('/articles/{article}', [HomeController::class, 'article'])
+    ->whereNumber('article')
+    ->name('article');
 

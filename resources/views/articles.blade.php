@@ -1,5 +1,5 @@
 @extends('layout')
-@section('title', 'Home page')
+@section('title', 'Articles')
 @section('content')
 
         <div>{{ $articles->links('partials.pagination') }}</div>
@@ -11,7 +11,7 @@
                         <div class="card-body">
                             <h5 class="card-title">{{ $article->title }}</h5>
                             <p class="card-text">{{ $article->excerpt }}</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                            <a href="{{ route( 'article', ['article'=> $article->id] ) }}" class="btn btn-primary">Read more</a>
                         </div>
                     </div>
                 </div>
