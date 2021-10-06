@@ -1,7 +1,7 @@
 @extends('layout')
 @section('title', $article->title)
 @section('content')
-
+                <a class="btn btn-primary my-3" href="{{url()->previous()}}">Back</a>
                 <div class="card">
                     {{--                    <img src="..." class="card-img-top" alt="...">--}}
                     <div class="card-body">

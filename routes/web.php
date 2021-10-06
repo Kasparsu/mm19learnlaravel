@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ArticleController;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\HomeController;
 /*
@@ -18,4 +19,6 @@ Route::get('/articles', [HomeController::class, 'articles']);
 Route::get('/articles/{article}', [HomeController::class, 'article'])
     ->whereNumber('article')
     ->name('article');
+Route::get('/admin/articles', [ArticleController::class, 'index']);
+Route::get('/admin/articles/create', [ArticleController::class, 'create']);
 
