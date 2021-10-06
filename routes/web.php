@@ -21,4 +21,5 @@ Route::get('/articles/{article}', [HomeController::class, 'article'])
     ->name('article');
 Route::get('/admin/articles', [ArticleController::class, 'index']);
 Route::get('/admin/articles/create', [ArticleController::class, 'create']);
+Route::post('/admin/articles', [ArticleController::class, 'store']);
 
