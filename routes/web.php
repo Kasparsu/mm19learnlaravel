@@ -22,4 +22,4 @@ Route::get('/articles/{article}', [HomeController::class, 'article'])
 Route::get('/admin/articles', [ArticleController::class, 'index']);
 Route::get('/admin/articles/create', [ArticleController::class, 'create']);
 Route::post('/admin/articles', [ArticleController::class, 'store']);
-
+Route::get('/admin/articles/{article}/edit', [ArticleController::class, 'edit']);

@@ -62,7 +62,7 @@ class ArticleController extends Controller
      */
     public function edit(Article $article)
     {
-        //
+        return response()->view('articles.edit', compact('article'));
     }
 
     /**
