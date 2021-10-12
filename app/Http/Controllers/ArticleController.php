@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateArticleRequest;
 use App\Models\Article;
 use Illuminate\Http\Request;
 
@@ -34,13 +35,13 @@ class ArticleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateArticleRequest $request)
     {
         $article = new Article();
         $article->title = $request->input('title');
         $article->body = $request->input('body');
         $article->save();
-        return response()->redirectTo('/admin/articles');
+        return response()->redirectToRoute('articles.index');
     }
 
     /**
@@ -74,7 +75,10 @@ class ArticleController extends Controller
      */
     public function update(Request $request, Article $article)
     {
-        //
+        $article->title = $request->input('title');
+        $article->body = $request->input('body');
+        $article->save();
+        return response()->redirectToRoute('articles.index');
     }
 
     /**
@@ -85,6 +89,7 @@ class ArticleController extends Controller
      */
     public function destroy(Article $article)
     {
-        //
+        $article->delete();
+        return response()->redirectToRoute('articles.index');
     }
 }

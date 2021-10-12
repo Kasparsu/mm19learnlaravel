@@ -1,7 +1,8 @@
 @extends('layout')
 @section('title', 'Edit ' . $article->title)
 @section('content')
-    <form action="/admin/articles/{{$article->id}}" method="POST">
+    <form action="{{route('articles.update', ['article' => $article->id])}}" method="POST">
+        @method('PUT')
         @csrf
         <div class="mb-3">
             <label for="title" class="form-label">Title</label>
