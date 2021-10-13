@@ -37,9 +37,10 @@ class ArticleController extends Controller
      */
     public function store(CreateArticleRequest $request)
     {
-        $article = new Article();
-        $article->title = $request->input('title');
-        $article->body = $request->input('body');
+
+        $article = new Article($request->validated());
+//        $article->title = $request->input('title');
+//        $article->body = $request->input('body');
         $article->save();
         return response()->redirectToRoute('articles.index');
     }
