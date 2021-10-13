@@ -75,8 +75,14 @@ class ArticleController extends Controller
      */
     public function update(Request $request, Article $article)
     {
-        $article->title = $request->input('title');
-        $article->body = $request->input('body');
+        $validated = $request->validate([
+            'title' => 'required|max:255',
+            //'title' => ['required','unique:posts','max:255'],
+            'body' => 'required',
+        ]);
+        $article->fill($validated);
+//        $article->title = $request->input('title');
+//        $article->body = $request->input('body');
         $article->save();
         return response()->redirectToRoute('articles.index');
     }
