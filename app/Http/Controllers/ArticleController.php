@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateArticleRequest;
 use App\Models\Article;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ArticleController extends Controller
 {
@@ -39,6 +40,7 @@ class ArticleController extends Controller
     {
 
         $article = new Article($request->validated());
+        $article->user_id = Auth::user()->id;
 //        $article->title = $request->input('title');
 //        $article->body = $request->input('body');
         $article->save();

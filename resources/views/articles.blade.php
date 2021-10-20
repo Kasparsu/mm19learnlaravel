@@ -14,6 +14,7 @@
                             <h5 class="card-title">{{ $article->title }}</h5>
                             <p class="card-text">{{ $article->excerpt }}</p>
                             <a href="{{ route( 'article', ['article'=> $article->id] ) }}" class="btn btn-primary">Read more</a>
+                            <p class="card-text"><small class="text-muted">{{ $article->user->name }}</small></p><!-- @todo teach about dates and carbon -->
                         </div>
                     </div>
                 </div>
