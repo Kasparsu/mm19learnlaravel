@@ -12,9 +12,11 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/articles">Articles</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/admin/articles">Admin</a>
-                </li>
+                @auth
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin/articles">Admin</a>
+                    </li>
+                @endauth
             </ul>
             <ul class="navbar-nav ml-auto">
                 <!-- Authentication Links -->

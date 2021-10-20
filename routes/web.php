@@ -19,7 +19,7 @@ Route::get('/articles', [HomeController::class, 'articles']);
 Route::get('/articles/{article}', [HomeController::class, 'article'])
     ->whereNumber('article')
     ->name('article');
-Route::resource('/admin/articles', ArticleController::class);
+
 //Route::get('/admin/articles', [ArticleController::class, 'index']);
 //Route::get('/admin/articles/create', [ArticleController::class, 'create']);
 //Route::post('/admin/articles', [ArticleController::class, 'store']);
@@ -28,9 +28,7 @@ Route::resource('/admin/articles', ArticleController::class);
 //Route::get('/admin/articles/{article}/delete', [ArticleController::class, 'destroy']);
 
 Route::middleware(['auth'])->group(function() {
-    Route::get('/home', function() {
-        return view('home');
-    })->name('home');
+    Route::resource('/admin/articles', ArticleController::class);
 
     Route::get('/user/profile', function() {
         return view('profile');

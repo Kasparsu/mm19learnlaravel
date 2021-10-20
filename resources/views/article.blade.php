@@ -9,7 +9,18 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ $article->title }}</h5>
                         <p class="card-text">{{ $article->body }}</p>
+                        <p class="card-text"><small class="text-muted">{{ $article->user->name }}</small></p>
+                        <p class="card-text"><small class="text-muted">{{ $article->created_at->diffForHumans() }}</small></p>
                     </div>
                 </div>
+                @foreach($article->comments as $comment)
+                    <div class="card my-2">
+                        <div class="card-body">
+                            {{ $comment->body }}
+                            <p class="card-text"><small class="text-muted">{{ $comment->user->name }}</small></p>
+                            <p class="card-text"><small class="text-muted">{{ $comment->created_at->diffForHumans() }}</small></p>
+                        </div>
+                    </div>
+                @endforeach
 
 @endsection
