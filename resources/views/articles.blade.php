@@ -14,8 +14,22 @@
                             <h5 class="card-title">{{ $article->title }}</h5>
                             <p class="card-text">{{ $article->excerpt }}</p>
                             <a href="{{ route( 'article', ['article'=> $article->id] ) }}" class="btn btn-primary">Read more</a>
-                            <p class="card-text"><small class="text-muted">{{ $article->user->name }}</small></p>
-                            <p class="card-text"><small class="text-muted">{{ $article->created_at->diffForHumans() }}</small></p>
+
+                            <p class="card-text">
+                                <small class="text-muted">{{ $article->user->name }}</small><br>
+                                <small class="text-muted">Created {{ $article->created_at->diffForHumans() }}</small><br>
+                                <small class="text-muted">Updated {{ $article->updated_at->diffForHumans() }}</small><br>
+                                <small class="text-muted">Comments: {{ $article->comments()->count() }}</small><br>
+                                <small class="text-muted">Likes: {{ $article->likes()->count() }}</small><br>
+                                <a href="/articles/{{$article->id}}/like">
+                                    @if($article->isLiked)
+                                        unlike
+                                    @else
+                                        like
+                                    @endif
+                                </a>
+                            </p>
+
                         </div>
                     </div>
                 </div>
