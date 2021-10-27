@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -21,6 +22,7 @@ class DatabaseSeeder extends Seeder
         $user->save();
         $this->call(UserSeeder::class);
         $this->call(ArticleSeeder::class);
+        $this->call(TagSeeder::class);
         $this->call(CommentSeeder::class);
         $this->call(LikeSeeder::class);
     }

@@ -15,6 +15,10 @@ class Article extends Model
 
     protected $fillable = ['title', 'body', 'image'];
 
+    public function tags(){
+        return $this->belongsToMany(Tag::class);
+    }
+
     public function likes(){
         return $this->hasMany(Like::class);
     }
@@ -28,6 +32,9 @@ class Article extends Model
     }
 
     public function getIsLikedAttribute(){
+        if(Auth::guest()){
+            return false;
+        }
         return $this->likes()->where('user_id', Auth::user()->id)->exists();
     }
 

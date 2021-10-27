@@ -27,7 +27,12 @@
                                     @else
                                         like
                                     @endif
-                                </a>
+                                </a><br>
+                                @foreach($article->tags as $tag)
+                                    <a href="/articles/tags/{{$tag->id}}" class="text-decoration-none">
+                                        <span class="badge rounded-pill bg-secondary">{{$tag->name}}</span>
+                                    </a>
+                                @endforeach
                             </p>
 
                         </div>
