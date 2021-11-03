@@ -13,7 +13,11 @@ class Article extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'body', 'image'];
+    protected $fillable = ['title', 'body'];
+
+    public function images(){
+        return $this->hasMany(Image::class);
+    }
 
     public function tags(){
         return $this->belongsToMany(Tag::class);
@@ -38,13 +42,7 @@ class Article extends Model
         return $this->likes()->where('user_id', Auth::user()->id)->exists();
     }
 
-    /**
-     * @param UploadedFile $image
-     */
-    public function setImageAttribute($image){
-        $path = $image->store('public');
-        $this->image_path = Storage::url($path);
-    }
+
 
     public function getExcerptAttribute(){
         $parts = explode("\n\n",$this->body);

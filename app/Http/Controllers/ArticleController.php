@@ -5,8 +5,12 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateArticleRequest;
 use App\Http\Requests\UpdateArticleRequest;
 use App\Models\Article;
+use App\Models\Image;
+use App\Models\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class ArticleController extends Controller
 {
@@ -32,7 +36,8 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        return response()->view('articles.create');
+        $tags = Tag::all();
+        return response()->view('articles.create', compact('tags'));
     }
 
     /**
@@ -43,12 +48,20 @@ class ArticleController extends Controller
      */
     public function store(CreateArticleRequest $request)
     {
-
         $article = new Article($request->validated());
         $article->user_id = Auth::user()->id;
 //        $article->title = $request->input('title');
 //        $article->body = $request->input('body');
         $article->save();
+        foreach($request->validated()['image'] as $img) {
+            $path = $img->store('public');
+            $image = new Image();
+            $image->path = Storage::url($path);
+            $article->images()->save($image);
+        }
+        foreach ($request->validated()['tags'] as $tagId) {
+            $article->tags()->attach($tagId);
+        }
         return response()->redirectToRoute('articles.index');
     }
 
